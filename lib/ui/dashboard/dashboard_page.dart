@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idiada_project/ui/dashboard/dashboard_card.dart';
 import 'package:idiada_project/widget/drawer_designed.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -16,7 +17,13 @@ class _DashboardPageState extends State<DashboardPage> {
         title: const Text("Dashboard"),
       ),
       drawer: const DrawerDesigned(),
-      body: const Placeholder(),
+      body: ListView(
+        children: [
+          DashboardCard(),
+          DashboardCard(),
+          DashboardCard(),
+        ],
+      ),
     );
   }
 }

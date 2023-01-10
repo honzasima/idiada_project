@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:idiada_project/ui/about/about_page.dart';
@@ -44,6 +45,20 @@ class DrawerDesigned extends StatelessWidget {
                   builder: (context) => const AboutPage(),
                 ),
               );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.file_download),
+            title: const Text('Load file'),
+            onTap: () async {
+              Navigator.pop(context);
+              FilePickerResult? result = await FilePicker.platform.pickFiles();
+              //
+              // if (result != null) {
+              //   File file = File(result.files.single.path);
+              // } else {
+              //   // User canceled the picker
+              // }
             },
           ),
         ],
