@@ -1,8 +1,11 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:idiada_project/ui/about/about_page.dart';
 import 'package:idiada_project/ui/dashboard/dashboard_page.dart';
+import 'package:idiada_project/ui/dashboard_table/dashboard_table_page.dart';
+import 'package:idiada_project/ui/load_file/bloc/load_file_cubit.dart';
+import 'package:idiada_project/ui/load_file/load_file_page.dart';
 
 class DrawerDesigned extends StatelessWidget {
   const DrawerDesigned({
@@ -16,7 +19,7 @@ class DrawerDesigned extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.blue,
             ),
             child: SvgPicture.asset(
@@ -25,7 +28,7 @@ class DrawerDesigned extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.dashboard),
+            leading: const Icon(Icons.dashboard),
             title: const Text('Dashboard'),
             onTap: () {
               Navigator.of(context).pushReplacement(
@@ -36,7 +39,18 @@ class DrawerDesigned extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.info_outline),
+            leading: const Icon(Icons.table_rows),
+            title: const Text('Dashboard Table'),
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => const DashboardTablePage(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.info_outline),
             title: const Text('About'),
             onTap: () {
               Navigator.pop(context);
@@ -48,17 +62,29 @@ class DrawerDesigned extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.file_download),
+            leading: const Icon(Icons.file_download),
             title: const Text('Load file'),
             onTap: () async {
               Navigator.pop(context);
-              FilePickerResult? result = await FilePicker.platform.pickFiles();
-              //
-              // if (result != null) {
-              //   File file = File(result.files.single.path);
-              // } else {
-              //   // User canceled the picker
-              // }
+
+              showModalBottomSheet(
+                context: context,
+                builder: (contextSheet) {
+                  return BlocProvider.value(
+                    value: BlocProvider.of<LoadFileCubit>(context),
+                    child: const LoadFilePage(),
+                  );
+                },
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.file_download),
+            title: const Text('Unload file'),
+            onTap: () async {
+              Navigator.pop(context);
+
+              context.read<LoadFileCubit>().unloadFile();
             },
           ),
         ],

@@ -10,7 +10,11 @@ class AboutPage extends StatelessWidget {
         title: const Text("About"),
       ),
       //drawer: const DrawerDesigned(),
-      body: const Placeholder(),
+      body: Center(
+          child: Text(
+        "IDIADA s.r.o.",
+        style: Theme.of(context).textTheme.headline3,
+      )),
     );
   }
 }
