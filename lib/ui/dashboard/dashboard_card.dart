@@ -66,7 +66,7 @@ class DashboardCard extends StatelessWidget {
         }, icon: Icon(Icons.short_text_outlined),),
         TextButton(
           onPressed: () {},
-          child: Text("Equilibrum"),
+          child: Text("Equilibrium"),
         ),
       ],
     );

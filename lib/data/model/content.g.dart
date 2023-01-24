@@ -18,6 +18,7 @@ Content _$ContentFromJson(Map<String, dynamic> json) => Content(
       totalTime: json['Total time'] as String,
       inOfTime: json['Inc. of time'] as String,
       blockText: json['block_text'] as String,
+      infoItems: InfoItems.fromJson(json['info_items'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ContentToJson(Content instance) => <String, dynamic>{
@@ -32,4 +33,5 @@ Map<String, dynamic> _$ContentToJson(Content instance) => <String, dynamic>{
       'Total time': instance.totalTime,
       'Inc. of time': instance.inOfTime,
       'block_text': instance.blockText,
+      'info_items': instance.infoItems,
     };

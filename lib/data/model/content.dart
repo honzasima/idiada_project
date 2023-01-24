@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:idiada_project/data/model/info_items.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'content.g.dart';
@@ -39,6 +40,9 @@ class Content {
   @JsonKey(name: "block_text")
   final String blockText;
 
+  @JsonKey(name: "info_items")
+  final InfoItems infoItems;
+
   Content({
     required this.id,
     required this.success,
@@ -51,6 +55,7 @@ class Content {
     required this.totalTime,
     required this.inOfTime,
     required this.blockText,
+    required this.infoItems,
   });
 
   factory Content.fromJsonString(String json) {
